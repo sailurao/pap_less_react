@@ -1,19 +1,21 @@
 import axios from 'axios';
 
-const COVID_CONTROLLER_IP = 'http://192.168.0.200' //http://localhost';
-//const COVID_CONTROLLER_IP = 'http://35.222.246.251'; //192.168.0.200';
-//const COVID_CONTROLLER_IP = 'https://35.239.124.98'; //192.168.0.200';
+const COVID_CONTROLLER_IP = 'http://192.168.0.45' //http://localhost';
 
-const USER_API_BASE_URL = COVID_CONTROLLER_IP +':8080/users';
-const EMPLOYEE1_API_BASE_URL = COVID_CONTROLLER_IP +':8080/245678342/ighklsd'; //used to fetch single employee record by user id
+//const COVID_CONTROLLER_IP = 'http://192.168.0.200' //http://localhost';
 
-const VISITOR1_API_BASE_URL = COVID_CONTROLLER_IP +':8080/245678342/ighklsd1'; //used to fetch single visitor record by user id
 
-const AUTH_API_BASE_URL = COVID_CONTROLLER_IP +':8080/auth';
-const DOCT_API_BASE_URL = COVID_CONTROLLER_IP +':8080/doctables';
-const DOCT_API_BASE_URL1 = COVID_CONTROLLER_IP +':8080/doctabless';
-const JOBT_API_BASE_URL = COVID_CONTROLLER_IP +':8080/jobtables';
-const WCT_API_BASE_URL = COVID_CONTROLLER_IP +':8080/workcenters';
+
+const USER_API_BASE_URL = COVID_CONTROLLER_IP +':8081/users';
+const EMPLOYEE1_API_BASE_URL = COVID_CONTROLLER_IP +':8081/245678342/ighklsd'; //used to fetch single employee record by user id
+
+const VISITOR1_API_BASE_URL = COVID_CONTROLLER_IP +':8081/245678342/ighklsd1'; //used to fetch single visitor record by user id
+
+const AUTH_API_BASE_URL = COVID_CONTROLLER_IP +':8081/auth';
+const DOCT_API_BASE_URL = COVID_CONTROLLER_IP +':8081/doctables';
+const DOCT_API_BASE_URL1 = COVID_CONTROLLER_IP +':8081/doctabless';
+const JOBT_API_BASE_URL = COVID_CONTROLLER_IP +':8081/jobtables';
+const WCT_API_BASE_URL = COVID_CONTROLLER_IP +':8081/workcenters';
 
 
 
