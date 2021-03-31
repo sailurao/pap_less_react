@@ -1,8 +1,9 @@
 import axios from 'axios';
 
-const COVID_CONTROLLER_IP = 'http://192.168.0.45' //http://localhost';
+//const COVID_CONTROLLER_IP = 'http://192.168.0.45' //http://localhost';
 
 //const COVID_CONTROLLER_IP = 'http://192.168.0.200' //http://localhost';
+const COVID_CONTROLLER_IP = 'http://192.168.0.236' //http://localhost';
 
 
 
@@ -17,10 +18,15 @@ const DOCT_API_BASE_URL1 = COVID_CONTROLLER_IP +':8081/doctabless';
 const JOBT_API_BASE_URL = COVID_CONTROLLER_IP +':8081/jobtables';
 const WCT_API_BASE_URL = COVID_CONTROLLER_IP +':8081/workcenters';
 
+const FILES_URL = COVID_CONTROLLER_IP +':8081/files/';
 
 
 class ApiService {
 
+	GetServerFilesUrl(){
+		return FILES_URL;
+	}
+	
 	//******************** users table *****************
     fetchUsers() {
         return axios.get(USER_API_BASE_URL);

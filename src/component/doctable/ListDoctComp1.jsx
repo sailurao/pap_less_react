@@ -3,18 +3,20 @@ import ApiService from "../../service/ApiService";
 import Select from 'react-select';
 import QRious from "qrious";
 
-class ListDoctComponent extends Component {
+class ListDoctComp1 extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
 		    jobs:[],
             docrows: [],
+            wcs:[],
 			myWorkId: 0,
             message: null,
 			isAuth1: false,
 			flag1:0,
-			flag2:0
+            flag2: 0,
+			flag3: 0
         }
 		this.timer=0;
 		this.flag=false;
@@ -26,7 +28,7 @@ class ListDoctComponent extends Component {
        // this.generateQR = this.generateQR.bind(this);
 		this.TmrEvent = this.TmrEvent.bind(this);
 		this.handleChange = this.handleChange.bind(this);
-		
+        this.getWcDetails = this.getWcDetails.bind(this);		
     }
 
     componentDidMount() {
@@ -41,7 +43,14 @@ class ListDoctComponent extends Component {
 					this.reloadDocList();
 	   });				
 					
-    }
+        ApiService.fetchWcrows()
+            .then((res) => {
+                this.setState({ wcs: res.data.result });
+                this.setState({ flag3: 1 });
+                this.reloadDocList();
+            });				
+
+   }
 	
     onChange = (e) => {
 		this.setState({ myWorkId: e.target.value });
@@ -174,7 +183,15 @@ reloadDocList() {
         return emplst1;
     }
 
-
+    getWcDetails(wc_id) {
+        if (!this.state.flag3)
+            return "";
+        for (let item of this.state.wcs) {
+            if (item.workcenter == wc_id)
+                return item.description;
+        }
+        return "";
+    }
 
     render() {
         const Tbl1Style = { borderTopWidth: 1, borderWidth:3, borderColor: 'red',borderStyle: 'solid'};
@@ -200,7 +217,7 @@ reloadDocList() {
                         <tr>
                             <th className="hidden">Id</th>
                             <th>WORKCENTER</th>
-                            <th>DOC-PATH</th>
+                            <th>WC-DETAILS</th>
                             <th>DOC-NAME</th>
                             <th>DESCRIPTION</th>
                         </tr>
@@ -212,7 +229,7 @@ reloadDocList() {
                         emp =>   
                                     <tr style={{ border: '10px'}} key={emp.id}>
                                         <td>{emp.workcenter}</td>
-                                        <td>{emp.docpath}</td>
+                                        <td>{this.getWcDetails(emp.workcenter)}</td>
                                         <td><a href={ApiService.GetServerFilesUrl()+emp.docname}>{emp.docname}</a></td>
                                         <td>{emp.description}</td>
                                         { this.state.isAuth1 && <td>
@@ -234,4 +251,4 @@ reloadDocList() {
 
 }
 
-export default ListDoctComponent;
+export default ListDoctComp1;

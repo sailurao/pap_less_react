@@ -12,7 +12,7 @@ class EditWcComponent extends Component {
             message: null
 		}
         this.saveDocrow = this.saveDocrow.bind(this);
-        this.loadDocrow = this.loadDocrow.bind(this);
+        this.loadWcrow = this.loadWcrow.bind(this);
     }
 
     componentDidMount() {

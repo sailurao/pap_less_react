@@ -7,6 +7,9 @@ const Navbar = ({ history }) => {
 
   const isAuth = !!localStorage.getItem("token");
 
+  const isAuth1 = localStorage.getItem("admin")=="true";
+
+	
   const loginUser = () => {
     localStorage.setItem("token", "some-login-token");
     history.push("/profile/Vijit");
@@ -49,21 +52,23 @@ const Navbar = ({ history }) => {
               DOCTABLE
             </NavLink>
 
+				    {isAuth1 &&
             <NavLink
               className="navbar-item"
               activeClassName="is-active"
               to="/workcenters"
             >
               WORK CENTERS
-            </NavLink>
+            </NavLink> }
 				
+						 {isAuth1 &&
             <NavLink
               className="navbar-item"
               activeClassName="is-active"
               to="/jobtables"
             >
               JOB TABLE
-            </NavLink>
+            </NavLink> }
 			
 
             <NavLink

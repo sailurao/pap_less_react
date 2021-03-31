@@ -38,10 +38,11 @@ import styles from './App.css';
 
 import Navbar from "./component/Navbar";
 import ApiService from "./service/ApiService";
-import AuthComponent from "./component/employee/AuthComponent";
-import logout from "./component/employee/logout";
+import AuthComponent from "./component/doctable/AuthComponent";
+import logout from "./component/doctable/logout";
 
 import ListDoctComponent from "./component/doctable/ListDoctComponent";
+import ListDoctComp1 from "./component/doctable/ListDoctComp1";
 import AddDoctComponent from "./component/doctable/AddDoctComponent";
 import EditDoctComponent from "./component/doctable/EditDoctComponent";
 import ListWcComponent from "./component/doctable/ListWcComponent";
@@ -58,6 +59,7 @@ class App extends React.Component {
         super(props)
         this.state = {
 					 isAuth: false,
+					 isAuth1: false,
 					 token:"hello"
 				}
 			}
@@ -76,10 +78,17 @@ class App extends React.Component {
 										
 												if(str== "match"){
 														this.setState({isAuth:true}); //useState(true);
+														let str2 = 	localStorage.getItem("admin");
+                            if(str2=="true")														
+															this.setState({isAuth1:true}); //useState(true);
 												}
 												else{
 														this.setState({isAuth:false}); //useState(false);
+														this.setState({isAuth1:false}); //useState(false);
 												}
+												
+												
+												
 										});
 										
 										
@@ -91,7 +100,7 @@ class App extends React.Component {
 					};    
   return (
       <div className="container">
-          <Router>
+		  <Router basename={process.env.REACT_APP_ROUTER_BASE || ''}>
 							<div className="form-group">
               </div>
               <div className="col-md-6">
@@ -110,27 +119,28 @@ class App extends React.Component {
 									<div className="form-group" style={{ marginTop: 40 }}>
 									 </div>
    	              <div className="form-group">
-									<Switch>
-                      {this.state.isAuth && <Route path="/" exact component={ListDoctComponent} /> }
-                      {this.state.isAuth && <Route path="/doctables" component={ListDoctComponent} /> }
-                      {this.state.isAuth && <Route path="/add-doct" component={AddDoctComponent} /> }
-                      {this.state.isAuth && <Route path="/edit-doct" component={EditDoctComponent} /> }
-                      {this.state.isAuth && <Route path="/jobtables" component={ListJobtComponent} /> }
-                      {this.state.isAuth && <Route path="/add-jobt" component={AddJobtComponent} /> }
-                      {this.state.isAuth && <Route path="/edit-jobt" component={EditJobtComponent} /> }
-                      {this.state.isAuth && <Route path="/workcenters" component={ListWcComponent} /> }
-                      {this.state.isAuth && <Route path="/add-wct" component={AddWcComponent} /> }
-                      {this.state.isAuth && <Route path="/edit-wct" component={EditWcComponent} /> }
-                      {this.state.isAuth && <Route path="/employee-trs" component={ListEmpTrComponent} /> }
-                      {this.state.isAuth && <Route path="/add-employee-tr" component={AddEmpTrComponent} /> }
+					<Switch>
+					  {this.state.isAuth &&  <Route path="/" exact component={ListDoctComponent} /> }
+					  {this.state.isAuth && !this.state.isAuth1 && <Route path="/doctables" component={ListDoctComp1} />}
+					  {this.state.isAuth1 && <Route path="/doctables" component={ListDoctComponent} />}
+                      {this.state.isAuth1 && <Route path="/add-doct" component={AddDoctComponent} /> }
+                      {this.state.isAuth1 && <Route path="/edit-doct" component={EditDoctComponent} /> }
+                      {this.state.isAuth1 && <Route path="/jobtables" component={ListJobtComponent} /> }
+                      {this.state.isAuth1 && <Route path="/add-jobt" component={AddJobtComponent} /> }
+                      {this.state.isAuth1 && <Route path="/edit-jobt" component={EditJobtComponent} /> }
+                      {this.state.isAuth1 && <Route path="/workcenters" component={ListWcComponent} /> }
+                      {this.state.isAuth1 && <Route path="/add-wct" component={AddWcComponent} /> }
+                      {this.state.isAuth1 && <Route path="/edit-wct" component={EditWcComponent} /> }
+                      {this.state.isAuth1 && <Route path="/employee-trs" component={ListEmpTrComponent} /> }
+                      {this.state.isAuth1 && <Route path="/add-employee-tr" component={AddEmpTrComponent} /> }
                       <Route path="/new-tr" component={NewTrComponent} />
                       <Route path="/empalrt1" component={EmpAlert1} />
                       <Route path="/empalrt2" component={EmpAlert2} />
                        {!this.state.isAuth && <Route path="/auth" component={AuthComponent} /> }
-                      {this.state.isAuth && <Route path="/visitors" component={ListVstComponent} /> }
-                      {this.state.isAuth && <Route path="/add-visitors" component={AddVstComponent} /> }
-                      {this.state.isAuth && <Route path="/edit-visitor" component={EditVstComponent} /> }
-                      {this.state.isAuth && <Route path="/visitor-trs" component={ListVstTrComponent} /> }
+                      {this.state.isAuth1 && <Route path="/visitors" component={ListVstComponent} /> }
+                      {this.state.isAuth1 && <Route path="/add-visitors" component={AddVstComponent} /> }
+                      {this.state.isAuth1 && <Route path="/edit-visitor" component={EditVstComponent} /> }
+                      {this.state.isAuth1 && <Route path="/visitor-trs" component={ListVstTrComponent} /> }
                       <Route path="/new-vst-tr" component={NewVstTrComponent} />
                       <Route path="/vstalrt1" component={VstAlert1} />
                       <Route path="/logout" component={logout} />

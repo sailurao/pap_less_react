@@ -147,7 +147,7 @@ class AddDoctComponent extends Component{
                 </div>
 				
 				<div className="form-group">
-                    <label>DOC-NAME:</label>
+                    <label>DESCRIPTION:</label>
                     <input placeholder="description" name="description" className="form-control" value={this.state.description} onChange={this.onChange}/>
                 </div>
 				

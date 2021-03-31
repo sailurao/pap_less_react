@@ -15,6 +15,8 @@ class logout extends Component {
 
     componentDidMount() {
 	    var str = window.localStorage.getItem("token");
+		window.localStorage.setItem("admin","false");
+
 		
 	    window.localStorage.removeItem("token");
         console.log("token is :"+str);

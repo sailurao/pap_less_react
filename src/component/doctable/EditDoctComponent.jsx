@@ -52,6 +52,8 @@ class EditDoctComponent extends Component {
     }
 
     render() {
+        console.log("om sri Ram1"); //Getting the path data -  https://reactgo.com/react-router-current-route/
+
         return (
             <div>
                 <h2 className="text-center">Edit Docrow</h2>
@@ -69,7 +71,7 @@ class EditDoctComponent extends Component {
 
 				<div className="form-group">
                     <label>DOCK-NAME:</label>
-                    <input placeholder="dockname" name="dockname" className="form-control" value={this.state.dockname} onChange={this.onChange}/>
+                    <input placeholder="docname" name="docname" className="form-control" value={this.state.docname} onChange={this.onChange}/>
                 </div>
 				
 				<div className="form-group">

@@ -36,7 +36,7 @@ class AuthComponent extends Component {
 												
 														if(str== "match"){
 																this.setState({isAuth:true}); //useState(true);
-																window.location.assign("/employees");
+																window.location.assign("/doctables");
 														}
 														else{
 																this.setState({isAuth:false}); //useState(false);
@@ -56,6 +56,13 @@ class AuthComponent extends Component {
 							let emp = res.data.result;
                             let str = res.data.message;													
 							if(str != ""){
+							
+							    if(emp.username=="admin")
+									window.localStorage.setItem("admin","true");
+								else
+									window.localStorage.setItem("admin","false");
+								
+
 							 
 								window.localStorage.setItem("token",str);
 								this.setState({token:str}); //set token
@@ -63,16 +70,17 @@ class AuthComponent extends Component {
 								this.setState({count:1}); //reset count to trigger component Mount
 								this.timer = setInterval(this.TmrEvent, 5000);
 								//this.props.history.push('/employees'); //main page
-								window.location.assign("/employees");
+								window.location.assign("/doctables");
 							}
 							else{
+								window.localStorage.setItem("admin","false");
 								this.setState({token:"hello"}); //useState(false);
 								this.setState({isAuth:false}); //set token
 								alert("Wrong Username and Password !");
 								window.localStorage.removeItem("token");
 								this.setState({count:1}); //reset count to trigger component Mount
 //								this.props.history.push('/employees'); //page not found
-								window.location.assign("/employees");
+								window.location.assign("/doctables");
 
 							}
             });
@@ -102,7 +110,7 @@ class AuthComponent extends Component {
 																console.log("Token is:" + str5);
 
 //																this.props.history.push('/employees'); //main page
-																window.location.assign("/employees");
+															window.location.assign("/doctables");
 														}
 														else{
 																this.setState({isAuth:false}); //useState(false);
@@ -117,7 +125,7 @@ class AuthComponent extends Component {
   render() {
     return (
       <div>
-	    { this.state.isAuth &&  this.props.history.push('/employees') }
+			{ this.state.isAuth && this.props.history.push('/doctables') }
         <h2 className="text-center" class="title">Please enter</h2>
         <form>
           <div className="form-group">

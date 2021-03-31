@@ -1,7 +1,9 @@
 {
   "name": "pap_less",
   "version": "0.1.0",
+  "description": "PAPER_LESS REACT APP",
   "private": true,
+  "homepage":"http://192.168.0.45:3001/Paperless",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",

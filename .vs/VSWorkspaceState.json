@@ -1,9 +1,11 @@
 {
   "ExpandedNodes": [
     "",
+    "\\public",
     "\\src",
     "\\src\\component",
-    "\\src\\component\\doctable"
+    "\\src\\component\\doctable",
+    "\\src\\service"
   ],
   "SelectedNode": "\\src\\component\\doctable\\AddDoctComponent.jsx",
   "PreviewInSolutionExplorer": false
